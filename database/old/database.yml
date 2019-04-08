@@ -1,0 +1,23 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 10
+  host: <%= Rails.application.secrets.mysql_host %>
+  username: <%= Rails.application.secrets.mysql_username %>
+  password: <%= Rails.application.secrets.mysql_password %>
+  database: <%= Rails.application.secrets.mysql_database %>
+
+test:
+  <<: *default
+
+development:
+  <<: *default
+
+staging:
+  <<: *default
+
+alpha:
+  <<: *default
+
+production:
+  <<: *default
