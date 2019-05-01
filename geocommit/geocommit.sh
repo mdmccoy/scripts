@@ -1,1 +1,1 @@
-curl -s http://ip-api.com/json/ >> locations.txt && echo -e "," >> locations.txt
+curl -s http://ip-api.com/json/ >> ~/source/scripts/geocommit/locations.txt && echo -e "," >> ~/source/scripts/geocommit/locations.txt
