@@ -9,4 +9,5 @@ GIT_BRANCH=$(parse_git_branch)
 
 #echo "${GIT_BRANCH} - ${1}"
 
-git add . && git commit -m  "${GIT_BRANCH} - ${1}" && source ~/source/scripts/geocommit/geocommit.sh
+git add . && git commit -m  "${GIT_BRANCH} - ${1}"
+source ~/source/scripts/geocommit/geocommit.sh
