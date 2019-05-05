@@ -1,7 +1,7 @@
 require 'httparty'
 
 url = 'http://ip-api.com/json'
-file = '~/source/scripts/geocommit/locations.txt'
+file = '/home/matt/source/scripts/geocommit/locations.txt'
 
 geo_info = HTTParty.get(url).parsed_response
 
