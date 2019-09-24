@@ -1,12 +1,14 @@
+require 'dotenv/load'
 require 'httparty'
 
-urls = ['http://ip-api.com/json','https://api.ipgeolocation.io/ipgeo?apiKey=c1e22d6ae4874494bf761de32e20c56f']
+urls = %W[http://ip-api.com/json https://api.ipgeolocation.io/ipgeo?apiKey=#{ENV['IP_GEO_KEY']}]
 
 urls.each do |url|
   begin
     geo_info = HTTParty.get(url).parsed_response
 
     if geo_info
+      geo_info['server-name'] = system('hostname')
       geo_info['datetime'] = Time.now.utc.to_s
       puts geo_info
       File.open('/home/matt/source/scripts/geocommit/locations.txt', 'a+') { |f| f.puts "#{geo_info}," }
