@@ -1,12 +1,18 @@
 require 'httparty'
 
-url = 'http://ip-api.com/json'
-file = '/home/matt/source/scripts/geocommit/locations.txt'
+urls = ['http://ip-api.com/json','https://api.ipgeolocation.io/ipgeo?apiKey=c1e22d6ae4874494bf761de32e20c56f']
 
-geo_info = HTTParty.get(url).parsed_response
+urls.each do |url|
+  begin
+    geo_info = HTTParty.get(url).parsed_response
 
-geo_info['datetime'] = Time.now.utc.to_s
-
-puts geo_info
-
-File.open(file, 'a+') { |f| f.puts "#{geo_info}," }
+    if geo_info
+      geo_info['datetime'] = Time.now.utc.to_s
+      puts geo_info
+      File.open('/home/matt/source/scripts/geocommit/locations.txt', 'a+') { |f| f.puts "#{geo_info}," }
+      break
+    end
+  rescue => e
+    p e
+  end
+end
